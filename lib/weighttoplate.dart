@@ -16,7 +16,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
   final myController = TextEditingController();
 
   int fortyFiveInt = 0;
-  String thirtyFiveInt = 'x';
+  int thirtyFiveInt = 0;
   int twentyFiveInt = 0;
   int fifteenInt = 0;
   int tenInt = 0;
@@ -50,24 +50,25 @@ class _WeightToPlateState extends State < WeightToPlate > {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      print(myController.text);
       int input = int.parse(myController.text);
       int nobar = (input - 45) * 10;
-      double halfbarbell = nobar / 2;
-      temp = (halfbarbell / 450).floor();
+      double halftotalweight = nobar / 2;
+      temp = (halftotalweight / 450).floor();
       if (temp >= 1) {
         fortyFiveInt = temp;
       } else {
         fortyFiveInt = 0;
       }
-      var newtotal = halfbarbell - (temp * 450);
+      var newtotal = halftotalweight - (temp * 450);
+      print(newtotal);
       temp = (newtotal / 250).floor();
       if (temp >= 1) {
         twentyFiveInt = temp;
       } else {
         twentyFiveInt = 0;
       }
-      newtotal = newtotal - (temp * 2520);
+      newtotal = newtotal - (temp * 250);
+      print(newtotal);
       temp = (newtotal / 150).floor();
       if (temp >= 1) {
         fifteenInt = temp;
@@ -75,7 +76,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
         fifteenInt = 0;
       }
       newtotal = newtotal - (temp * 150);
-
+      print(newtotal);
 
       temp = (newtotal / 100).floor();
       if (temp >= 1) {
@@ -84,7 +85,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
         tenInt = 0;
       }
       newtotal = newtotal - (temp * 100);
-
+      print(newtotal);
 
       temp = (newtotal / 50).floor();
       if (temp >= 1) {
@@ -102,8 +103,9 @@ class _WeightToPlateState extends State < WeightToPlate > {
         twoFiveInt = 0;
       }
       newtotal = newtotal - (temp * 25);
+      print(newtotal);
       
-      fortyFiveLabel = fortyFiveInt.toString() + ' 45s';
+      fortyFiveLabel = fortyFiveInt.toString() + ((fortyFiveInt > 1)?' 45s':' 45lb plate');
       thirtyFiveLabel = thirtyFiveInt.toString() + ' 35s';
       twentyFiveLabel = twentyFiveInt.toString() + ' 25s';
       fifteenLabel = fifteenInt.toString() + ' 15s';
