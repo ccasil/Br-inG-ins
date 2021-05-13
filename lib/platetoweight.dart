@@ -14,6 +14,13 @@ class PlateToWeight extends StatefulWidget {
 class _PlateToWeightState extends State < PlateToWeight > {
   int total = 45;
 
+    @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    // myController.dispose();
+    super.dispose();
+  }
+
   void _calculate() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -41,8 +48,8 @@ class _PlateToWeightState extends State < PlateToWeight > {
               Text('Enter the number of plates on one side of the barbell'),
               TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter a search term'
+                  // border: OutlineInputBorder(),
+                  hintText: '55s'
                 ),
               ),
               MaterialButton(
