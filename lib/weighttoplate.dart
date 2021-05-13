@@ -14,14 +14,24 @@ class _WeightToPlateState extends State < WeightToPlate > {
 
   final _formKey = GlobalKey < FormState > ();
   final myController = TextEditingController();
-  int fortyFiveLabel = 0;
-  String thirtyFiveLabel = 'x';
-  int twentyFiveLabel = 0;
-  int fifteenLabel = 0;
-  int tenLabel = 0;
-  int fiveLabel = 0;
-  int twoFiveLabel = 0;
+
+  int fortyFiveInt = 0;
+  String thirtyFiveInt = 'x';
+  int twentyFiveInt = 0;
+  int fifteenInt = 0;
+  int tenInt = 0;
+  int fiveInt = 0;
+  int twoFiveInt = 0;
   int temp = 0;
+
+
+  String fortyFiveLabel = '';
+  String thirtyFiveLabel = '';
+  String twentyFiveLabel = '';
+  String fifteenLabel = '';
+  String tenLabel = '';
+  String fiveLabel = '';
+  String twoFiveLabel = '';
 
   String output = '';
 
@@ -46,60 +56,67 @@ class _WeightToPlateState extends State < WeightToPlate > {
       double halfbarbell = nobar / 2;
       temp = (halfbarbell / 450).floor();
       if (temp >= 1) {
-        fortyFiveLabel = temp;
+        fortyFiveInt = temp;
       } else {
-        fortyFiveLabel = 0;
+        fortyFiveInt = 0;
       }
       var newtotal = halfbarbell - (temp * 450);
       temp = (newtotal / 250).floor();
       if (temp >= 1) {
-        twentyFiveLabel = temp;
+        twentyFiveInt = temp;
       } else {
-        twentyFiveLabel = 0;
+        twentyFiveInt = 0;
       }
       newtotal = newtotal - (temp * 2520);
       temp = (newtotal / 150).floor();
       if (temp >= 1) {
-        fifteenLabel = temp;
+        fifteenInt = temp;
       } else {
-        fifteenLabel = 0;
+        fifteenInt = 0;
       }
       newtotal = newtotal - (temp * 150);
 
 
       temp = (newtotal / 100).floor();
       if (temp >= 1) {
-        tenLabel = temp;
+        tenInt = temp;
       } else {
-        tenLabel = 0;
+        tenInt = 0;
       }
       newtotal = newtotal - (temp * 100);
 
 
       temp = (newtotal / 50).floor();
       if (temp >= 1) {
-        fiveLabel = temp;
+        fiveInt = temp;
       } else {
-        fiveLabel = 0;
+        fiveInt = 0;
       }
       newtotal = newtotal - (temp * 50);
 
 
       temp = (newtotal / 25).floor();
       if (temp >= 1) {
-        twoFiveLabel = temp;
+        twoFiveInt = temp;
       } else {
-        twoFiveLabel = 0;
+        twoFiveInt = 0;
       }
       newtotal = newtotal - (temp * 25);
-
-      output = '45s: ' + fortyFiveLabel.toString() + '\n35s: ' +
-        thirtyFiveLabel.toString() + '\n25s: ' +
-        twentyFiveLabel.toString() + '\n15s: ' +
-        fifteenLabel.toString() + '\n10s: ' +
-        tenLabel.toString() + '\n5s: ' +
-        fiveLabel.toString() + '\n2.5s: ' +
-        twoFiveLabel.toString();
+      
+      fortyFiveLabel = fortyFiveInt.toString() + ' 45s';
+      thirtyFiveLabel = thirtyFiveInt.toString() + ' 35s';
+      twentyFiveLabel = twentyFiveInt.toString() + ' 25s';
+      fifteenLabel = fifteenInt.toString() + ' 15s';
+      tenLabel = tenInt.toString() + ' 10s';
+      fiveLabel = fiveInt.toString() + ' 5s';
+      twoFiveLabel = twoFiveInt.toString() + ' 2.5s';
+      // output = '45s: ' + fortyFiveLabel.toString() + '\n35s: ' +
+      //   thirtyFiveLabel.toString() + '\n25s: ' +
+      //   twentyFiveLabel.toString() + '\n15s: ' +
+      //   fifteenLabel.toString() + '\n10s: ' +
+      //   tenLabel.toString() + '\n5s: ' +
+      //   fiveLabel.toString() + '\n2.5s: ' +
+      //   twoFiveLabel.toString();
       // output = myController.text;
     });
   }
@@ -120,11 +137,12 @@ class _WeightToPlateState extends State < WeightToPlate > {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: < Widget > [
-                Text('45lb Barbell'),
                 TextFormField(
                   decoration: InputDecoration(
                     // border: OutlineInputBorder(),
-                    hintText: 'Enter a weight'
+                    hintText: 'Enter a weight',
+                    // helperText: 'lbs',
+                    counterText: 'lbs'
                   ),
                   controller: myController,
                   // The validator receives the text that the user has entered.
@@ -169,7 +187,15 @@ class _WeightToPlateState extends State < WeightToPlate > {
                     ],
                   ),
                 ),
-                Text(output),
+                // Text('45lb Barbell + '),
+                Text((myController.text.isEmpty)? '' : '45lb Barbell +'),
+                Text((fortyFiveInt != 0)? fortyFiveLabel : ''),
+                // Text((thirtyFiveInt != 0)? thirtyFiveLabel : ''),
+                Text((twentyFiveInt != 0)? twentyFiveLabel : ''),
+                Text((fifteenInt != 0)? fifteenLabel : ''),
+                Text((tenInt != 0)? tenLabel : ''),
+                Text((fiveInt != 0)? fiveLabel : ''),
+                Text((twoFiveInt != 0)? twoFiveLabel : ''),
               ],
             ),
           ),
