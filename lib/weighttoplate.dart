@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './components.dart';
 
 class WeightToPlate extends StatefulWidget {
   WeightToPlate({
@@ -141,7 +140,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                     }
                     _calculate();
                     return null;
-                  }
+                  },
                 ),
                 MaterialButton(
                   minWidth: 250,
