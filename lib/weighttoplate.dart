@@ -125,7 +125,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weight to Plate'),
+        title: Text('Weight to Plate Calculator'),
         leading: BackButton(),
       ),
       body: Center(

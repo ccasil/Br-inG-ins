@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './components.dart';
 import './weighttoplate.dart';
 import './platetoweight.dart';
+import './pctofmax.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
         ),
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
-          '/': (context) => MyHomePage(title: 'Home', ),
+          '/': (context) => MyHomePage(title: '', ),
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/weighttoplate': (context) => WeightToPlate(title: '', ),
           '/platetoweight': (context) => PlateToWeight(title: '', ),
+          '/pctofmax': (context) => PctOfMax(title: '', ),
         },
     );
   }
