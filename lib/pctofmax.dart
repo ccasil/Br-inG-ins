@@ -14,15 +14,9 @@ class _PctOfMaxState extends State < PctOfMax > {
 
   final _formKey = GlobalKey < FormState > ();
   final myController = TextEditingController();
-  TextEditingController fiftyfiveController = TextEditingController();
-  TextEditingController fortyfiveController = TextEditingController();
-  TextEditingController thirtyfiveController = TextEditingController();
-  TextEditingController twentyfiveController = TextEditingController();
-  TextEditingController fifteenController = TextEditingController();
-  TextEditingController tenController = TextEditingController();
-  TextEditingController fiveController = TextEditingController();
-  TextEditingController twofiveController = TextEditingController();
-  num total = 0;
+  String total = '';
+  String kgLabel = '0';
+  double _currentSliderValue = 20;
 
   @override
   void dispose() {
@@ -31,16 +25,15 @@ class _PctOfMaxState extends State < PctOfMax > {
     super.dispose();
   }
 
-  void _calculate() {
-    setState(() {
-      total = 45 + (int.parse(fiftyfiveController.text) * 110) + (int.parse(fortyfiveController.text) * 90) + (int.parse(thirtyfiveController.text) * 70) + (int.parse(twentyfiveController.text) * 50) + (int.parse(fifteenController.text) * 30) + (int.parse(tenController.text) * 20) + (int.parse(fiveController.text) * 10) + (int.parse(twofiveController.text) * 5);
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-    });
-  }
+  // void _calculate() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +49,56 @@ class _PctOfMaxState extends State < PctOfMax > {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: < Widget > [
+              Text(_currentSliderValue.toString()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(kgLabel, textAlign: TextAlign.right, ),
+                ],
+              ),
+              Slider(
+                value: _currentSliderValue,
+                min: 0,
+                max: 100,
+                divisions: 20,
+                label: _currentSliderValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                  });
+                },
+              ),
+              // Row(
+              //   children: < Widget > [
+              //     CalculatorKey(symbol: Keys.seven),
+              //     CalculatorKey(symbol: Keys.eight),
+              //     CalculatorKey(symbol: Keys.nine),
+              //   ]
+              // ),
+              // Row(
+              //   children: < Widget > [
+              //     CalculatorKey(symbol: Keys.four),
+              //     CalculatorKey(symbol: Keys.five),
+              //     CalculatorKey(symbol: Keys.six),
+              //   ]
+              // ),
+              // Row(
+              //   children: < Widget > [
+              //     CalculatorKey(symbol: Keys.one),
+              //     CalculatorKey(symbol: Keys.two),
+              //     CalculatorKey(symbol: Keys.three),
+              //   ]
+              // ),
+              // Row(
+              //   children: < Widget > [
+              //     CalculatorKey(symbol: Keys.zero),
+              //     CalculatorKey(symbol: Keys.decimal),
+              //     CalculatorKey(symbol: Keys.clear),
+              //   ]
+              // )
             ],
           ),
         ),
-      ),
-    );
+      ));
   }
 }
