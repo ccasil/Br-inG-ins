@@ -52,7 +52,7 @@ class _PctOfMaxState extends State < PctOfMax > {
       return null;
     }
     lbanswer = (number * (_currentSliderValue / 100)).toStringAsFixed(2);
-    kganswer = (number/2.2046 * (_currentSliderValue / 100)).toStringAsFixed(2);
+    kganswer = (number / 2.2046 * (_currentSliderValue / 100)).toStringAsFixed(2);
   }
 
   @override
@@ -72,8 +72,8 @@ class _PctOfMaxState extends State < PctOfMax > {
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  (userInput.isEmpty)? '' : userInput + ' lbs',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  (userInput.isEmpty) ? '' : userInput + ' lbs',
+                  style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Container(
                   padding: EdgeInsets.all(15),
@@ -81,7 +81,7 @@ class _PctOfMaxState extends State < PctOfMax > {
                   child: Text(
                     lbanswer + ' lbs',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                   ),
@@ -92,16 +92,10 @@ class _PctOfMaxState extends State < PctOfMax > {
                   child: Text(
                     kganswer + ' kgs',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(kgLabel, textAlign: TextAlign.right, ),
-                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -125,52 +119,61 @@ class _PctOfMaxState extends State < PctOfMax > {
               ],
             ),
           ),
-          Expanded(
-            child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3), itemCount: 12, primary: false, itemBuilder: (BuildContext context, int index) {
-              // Clear Button
-              if (index == 9) {
-                return MyButton(
-                  buttontapped: () {
-                    setState(() {
-                      // print(userInput);
-                      userInput = '';
-                      lbanswer = '0';
-                      kganswer = '0';
-                    });
-                  },
-                  buttonText: buttons[index],
-                  color: Colors.blue[50],
-                  textColor: Colors.black,
-                );
-              } // Delete Button
-              else if (index == 11) {
-                return MyButton(
-                  buttontapped: () {
-                    setState(() {
-                      userInput = userInput.substring(0, userInput.length - 1);
-                      lbkgconvert(userInput);
-                    });
-                  },
-                  buttonText: buttons[index],
-                  color: Colors.blue[50],
-                  textColor: Colors.black,
-                );
-              } else {
-                return MyButton(
-                  buttontapped: () {
-                    setState(() {
-                      // print(buttons[index]);
-                      userInput += buttons[index];
-                      lbkgconvert(userInput);
-                    });
-                  },
-                  buttonText: buttons[index],
-                  color: Colors.blue[50],
-                  textColor: Colors.black,
-                );
-              }
-            })
-          ),
+          Container(
+            // padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+            child: Expanded(
+              child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3), itemCount: 12, primary: false, physics: NeverScrollableScrollPhysics(), itemBuilder: (BuildContext context, int index) {
+                // Clear Button
+                if (index == 9) {
+                  return MyButton(
+                    buttontapped: () {
+                      setState(() {
+                        // print(userInput);
+                        userInput = '';
+                        lbanswer = '0';
+                        kganswer = '0';
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.blue[50],
+                    textColor: Colors.black,
+                  );
+                } // Delete Button
+                else if (index == 11) {
+                  return MyButton(
+                    buttontapped: () {
+                      setState(() {
+                        if (userInput.length > 1) {
+                          userInput = userInput.substring(0, userInput.length - 1);
+                          lbkgconvert(userInput);
+                        } else {
+                          userInput = '';
+                          lbanswer = '0';
+                          kganswer = '0';
+                          lbkgconvert(userInput);
+                        }
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.blue[50],
+                    textColor: Colors.black,
+                  );
+                } else {
+                  return MyButton(
+                    buttontapped: () {
+                      setState(() {
+                        // print(buttons[index]);
+                        userInput += buttons[index];
+                        lbkgconvert(userInput);
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.blue[50],
+                    textColor: Colors.black,
+                  );
+                }
+              })
+            ), )
         ],
       ),
     );
