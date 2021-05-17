@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 class PctOfMax extends StatefulWidget {
   PctOfMax({
@@ -21,7 +20,8 @@ class _PctOfMaxState extends State < PctOfMax > {
   double _currentSliderValue = 20;
 
   var userInput = '';
-  var answer = '';
+  var lbanswer = '';
+  var kganswer = '';
 
   // Array of button
   final List < String > buttons = [
@@ -46,24 +46,13 @@ class _PctOfMaxState extends State < PctOfMax > {
     super.dispose();
   }
 
-  // void _calculate() {
-  //   setState(() {
-  //     // This call to setState tells the Flutter framework that something has
-  //     // changed in this State, which causes it to rerun the build method below
-  //     // so that the display can reflect the updated values. If we changed
-  //     // _counter without calling setState(), then the build method would not be
-  //     // called again, and so nothing would appear to happen.
-  //   });
-  // }
-
-  // function to calculate the input operation
-  void equalPressed() {
-    String finaluserinput = userInput;
-    Parser p = Parser();
-    Expression exp = p.parse(finaluserinput);
-    ContextModel cm = ContextModel();
-    double eval = exp.evaluate(EvaluationType.REAL, cm);
-    answer = eval.toString();
+  lbkgconvert(lbkginput) {
+    var number = num.tryParse(lbkginput);
+    if (number == null) {
+      return null;
+    }
+    lbanswer = (number * (_currentSliderValue / 100)).toStringAsFixed(2);
+    kganswer = (number/2.2046 * (_currentSliderValue / 100)).toStringAsFixed(2);
   }
 
   @override
@@ -83,17 +72,28 @@ class _PctOfMaxState extends State < PctOfMax > {
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  userInput,
+                  (userInput.isEmpty)? '' : userInput + ' lbs',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
                 Container(
                   padding: EdgeInsets.all(15),
                   alignment: Alignment.centerRight,
                   child: Text(
-                    answer,
+                    lbanswer + ' lbs',
                     style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    kganswer + ' kgs',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -103,7 +103,12 @@ class _PctOfMaxState extends State < PctOfMax > {
                     Text(kgLabel, textAlign: TextAlign.right, ),
                   ],
                 ),
-                Text(_currentSliderValue.toString()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(_currentSliderValue.toInt().toString() + '%', textAlign: TextAlign.right),
+                  ],
+                ),
                 Slider(
                   value: _currentSliderValue,
                   min: 0,
@@ -112,7 +117,8 @@ class _PctOfMaxState extends State < PctOfMax > {
                   label: _currentSliderValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      _currentSliderValue = value;
+                      _currentSliderValue = value.floorToDouble();
+                      lbkgconvert(userInput);
                     });
                   },
                 ),
@@ -120,15 +126,16 @@ class _PctOfMaxState extends State < PctOfMax > {
             ),
           ),
           Expanded(
-            child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3), itemCount: 12, primary: false , itemBuilder: (BuildContext context, int index) {
+            child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3), itemCount: 12, primary: false, itemBuilder: (BuildContext context, int index) {
               // Clear Button
               if (index == 9) {
                 return MyButton(
                   buttontapped: () {
                     setState(() {
-                      print(userInput);
+                      // print(userInput);
                       userInput = '';
-                      answer = '0';
+                      lbanswer = '0';
+                      kganswer = '0';
                     });
                   },
                   buttonText: buttons[index],
@@ -140,8 +147,8 @@ class _PctOfMaxState extends State < PctOfMax > {
                 return MyButton(
                   buttontapped: () {
                     setState(() {
-                      userInput =
-                        userInput.substring(0, userInput.length - 1);
+                      userInput = userInput.substring(0, userInput.length - 1);
+                      lbkgconvert(userInput);
                     });
                   },
                   buttonText: buttons[index],
@@ -152,8 +159,9 @@ class _PctOfMaxState extends State < PctOfMax > {
                 return MyButton(
                   buttontapped: () {
                     setState(() {
-                      print(buttons[index]);
+                      // print(buttons[index]);
                       userInput += buttons[index];
+                      lbkgconvert(userInput);
                     });
                   },
                   buttonText: buttons[index],
