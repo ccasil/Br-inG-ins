@@ -35,7 +35,7 @@ class _PlateToWeightState extends State < PlateToWeight > {
   void _calculate() {
     setState(() {
       total = 45 + (int.parse(fiftyfiveController.text) * 110) + (int.parse(fortyfiveController.text) * 90) + (int.parse(thirtyfiveController.text) * 70) + (int.parse(twentyfiveController.text) * 50) + (int.parse(fifteenController.text) * 30) + (int.parse(tenController.text) * 20) + (int.parse(fiveController.text) * 10) + (int.parse(twofiveController.text) * 5);
-      kgtotal = 45 + (int.parse(fiftyfiveController.text) * 110) + (int.parse(fortyfiveController.text) * 90) + (int.parse(thirtyfiveController.text) * 70) + (int.parse(twentyfiveController.text) * 50) + (int.parse(fifteenController.text) * 30) + (int.parse(tenController.text) * 20) + (int.parse(fiveController.text) * 10) + (int.parse(twofiveController.text) * 5);
+      kgtotal = total/2.2046;
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -234,8 +234,8 @@ class _PlateToWeightState extends State < PlateToWeight > {
                   ],
                 ),
               ),
-              Text('TOTAL: ' + total.toString()),
-              Text('kg TOTAL: ' + kgtotal.toString()),
+              Text('lb TOTAL: ' + total.toString()),
+              Text('kg TOTAL: ' + kgtotal.toStringAsFixed(2)),
             ],
           ),
         ),
