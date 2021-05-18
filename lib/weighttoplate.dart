@@ -169,7 +169,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data')));
+                        .showSnackBar(SnackBar(content: Text('Processing Data'), duration: Duration(milliseconds: 600),));
                     }
                   },
                   child: Row(

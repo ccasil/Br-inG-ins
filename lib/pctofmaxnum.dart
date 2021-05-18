@@ -42,6 +42,8 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
     setState(() {
       var number = num.tryParse(lbkginput);
       if (number == null) {
+        lbanswer = '';
+        kganswer = '';
         return null;
       }
       lbanswer = (number * (_currentSliderValue / 100)).toStringAsFixed(2);
