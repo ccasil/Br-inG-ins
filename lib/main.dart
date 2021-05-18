@@ -3,6 +3,7 @@ import './components.dart';
 import './weighttoplate.dart';
 import './platetoweight.dart';
 import './pctofmax.dart';
+import './pctofmaxnum.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           '/weighttoplate': (context) => WeightToPlate(title: '', ),
           '/platetoweight': (context) => PlateToWeight(title: '', ),
           '/pctofmax': (context) => PctOfMax(title: '', ),
+          '/pctofmaxnum': (context) => PctOfMaxNum(title: '', ),
         },
     );
   }
@@ -89,6 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TheRouteButton('Weight to Plate', '/weighttoplate'),
               TheRouteButton('Plate to Weight', '/platetoweight'),
               TheRouteButton('% of Max', '/pctofmax'),
+              TheRouteButton('% of Max Num', '/pctofmaxnum'),
           ],
         ),
       ),

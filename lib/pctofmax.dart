@@ -13,11 +13,7 @@ class PctOfMax extends StatefulWidget {
 
 class _PctOfMaxState extends State < PctOfMax > {
 
-  final _formKey = GlobalKey < FormState > ();
-  final myController = TextEditingController();
-  String total = '';
-  String kgLabel = '0';
-  double _currentSliderValue = 20;
+  double _currentSliderValue = 80;
 
   var userInput = '';
   var lbanswer = '';
@@ -42,7 +38,6 @@ class _PctOfMaxState extends State < PctOfMax > {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
     super.dispose();
   }
 

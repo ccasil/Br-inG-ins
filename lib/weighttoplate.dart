@@ -146,6 +146,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                     // helperText: 'lbs',
                     counterText: 'lbs'
                   ),
+                  keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
                   controller: myController,
                   // The validator receives the text that the user has entered.
                   validator: (value) {
