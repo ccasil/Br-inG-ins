@@ -71,7 +71,7 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                   padding: EdgeInsets.all(15),
                   alignment: Alignment.centerRight,
                   child: Text(
-                    lbanswer + ' lbs',
+                    (lbanswer!=''?lbanswer + ' lbs':''),
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -82,18 +82,12 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                   padding: EdgeInsets.all(15),
                   alignment: Alignment.centerRight,
                   child: Text(
-                    kganswer + ' kgs',
+                    (kganswer!=''?kganswer + ' kgs':''),
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(_currentSliderValue.toInt().toString() + '%', textAlign: TextAlign.right),
-                  ],
                 ),
                 SliderTheme(data: SliderTheme.of(context).copyWith(
                     activeTrackColor: Colors.cyan,
@@ -113,6 +107,12 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                       });
                     },
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(_currentSliderValue.toInt().toString() + '%', textAlign: TextAlign.right),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.all(16),
