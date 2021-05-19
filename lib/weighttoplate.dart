@@ -104,22 +104,14 @@ class _WeightToPlateState extends State < WeightToPlate > {
       }
       newtotal = newtotal - (temp * 25);
       print(newtotal);
-      
-      fortyFiveLabel = fortyFiveInt.toString() + ((fortyFiveInt > 1)?' 45s':' 45lb plate');
-      thirtyFiveLabel = thirtyFiveInt.toString() + ' 35s';
-      twentyFiveLabel = twentyFiveInt.toString() + ' 25s';
-      fifteenLabel = fifteenInt.toString() + ' 15s';
-      tenLabel = tenInt.toString() + ' 10s';
-      fiveLabel = fiveInt.toString() + ' 5s';
-      twoFiveLabel = twoFiveInt.toString() + ' 2.5s';
-      // output = '45s: ' + fortyFiveLabel.toString() + '\n35s: ' +
-      //   thirtyFiveLabel.toString() + '\n25s: ' +
-      //   twentyFiveLabel.toString() + '\n15s: ' +
-      //   fifteenLabel.toString() + '\n10s: ' +
-      //   tenLabel.toString() + '\n5s: ' +
-      //   fiveLabel.toString() + '\n2.5s: ' +
-      //   twoFiveLabel.toString();
-      // output = myController.text;
+
+      fortyFiveLabel = fortyFiveInt.toString() + ((fortyFiveInt > 1) ? ' 45lb plates' : ' 45lb plate');
+      thirtyFiveLabel = thirtyFiveInt.toString() + ((thirtyFiveInt > 1) ? ' 35lb plates' : ' 35lb plate');
+      twentyFiveLabel = twentyFiveInt.toString() + ((twentyFiveInt > 1) ? ' 25lb plates' : ' 25lb plate');
+      fifteenLabel = fifteenInt.toString() + ((fifteenInt > 1) ? ' 15lb plates' : ' 15lb plate');
+      tenLabel = tenInt.toString() + ((tenInt > 1) ? ' 10lb plates' : ' 10lb plate');
+      fiveLabel = fiveInt.toString() + ((fiveInt > 1) ? ' 5lb plates' : ' 5lb plate');
+      twoFiveLabel = twoFiveInt.toString() + ((twoFiveInt > 1) ? ' 2.5lb plates' : ' 2.5lb plate');
     });
   }
 
@@ -130,14 +122,14 @@ class _WeightToPlateState extends State < WeightToPlate > {
         title: Text('Weight to Plate Calculator'),
         leading: BackButton(),
       ),
-      body: Center(
+      body: Container(
         // child: ,
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: < Widget > [
                 TextFormField(
                   decoration: InputDecoration(
@@ -169,7 +161,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data'), duration: Duration(milliseconds: 600),));
+                        .showSnackBar(SnackBar(content: Text('Processing Data'), duration: Duration(milliseconds: 600), ));
                     }
                   },
                   child: Row(
@@ -190,15 +182,62 @@ class _WeightToPlateState extends State < WeightToPlate > {
                     ],
                   ),
                 ),
-                // Text('45lb Barbell + '),
-                Text((myController.text.isEmpty)? '' : '45lb Barbell +'),
-                Text((fortyFiveInt != 0)? fortyFiveLabel : ''),
-                // Text((thirtyFiveInt != 0)? thirtyFiveLabel : ''),
-                Text((twentyFiveInt != 0)? twentyFiveLabel : ''),
-                Text((fifteenInt != 0)? fifteenLabel : ''),
-                Text((tenInt != 0)? tenLabel : ''),
-                Text((fiveInt != 0)? fiveLabel : ''),
-                Text((twoFiveInt != 0)? twoFiveLabel : ''),
+                Padding(padding: EdgeInsets.fromLTRB(0, 8.0, 0, 8.0), child:
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((fortyFiveInt != 0) ? fortyFiveLabel : '', textAlign: TextAlign.start, ),
+                          Text((fortyFiveInt != 0) ? (fortyFiveInt * 90).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Text((thirtyFiveInt != 0) ? thirtyFiveLabel : '', textAlign: TextAlign.start, ),
+                      //     Text((thirtyFiveInt != 0) ? (thirtyFiveInt*70).toString() : '', textAlign: TextAlign.end, ),
+                      //   ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((twentyFiveInt != 0) ? twentyFiveLabel : '', textAlign: TextAlign.start, ),
+                          Text((twentyFiveInt != 0) ? (twentyFiveInt * 50).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((fifteenInt != 0) ? fifteenLabel : '', textAlign: TextAlign.start, ),
+                          Text((fifteenInt != 0) ? (fifteenInt * 30).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((tenInt != 0) ? tenLabel : '', textAlign: TextAlign.start, ),
+                          Text((tenInt != 0) ? (tenInt * 20).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((fiveInt != 0) ? fiveLabel : '', textAlign: TextAlign.start, ),
+                          Text((fiveInt != 0) ? (fiveInt * 10).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text((twoFiveInt != 0) ? twoFiveLabel : '', textAlign: TextAlign.start, ),
+                          Text((twoFiveInt != 0) ? (twoFiveInt * 5).toString() : '', textAlign: TextAlign.end, ),
+                        ]),
+                    ]), ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text((myController.text.isEmpty) ? '' : '+ 45lb barbell'),
+                  ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text((myController.text.isEmpty) ? '' : '= ' + myController.text + ' lbs', textAlign: TextAlign.end, style: TextStyle(fontWeight: FontWeight.bold),),
+                  ]),
               ],
             ),
           ),

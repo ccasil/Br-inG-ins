@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
               TheRouteButton('Weight to Plate', '/weighttoplate'),
               TheRouteButton('Plate to Weight', '/platetoweight'),
-              TheRouteButton('% of Max', '/pctofmax'),
+              // TheRouteButton('% of Max', '/pctofmax'),
               TheRouteButton('% of Max Num', '/pctofmaxnum'),
           ],
         ),
