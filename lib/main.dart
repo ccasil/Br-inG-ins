@@ -1,9 +1,11 @@
+import 'package:braingains/template.dart';
 import 'package:flutter/material.dart';
 import './components.dart';
 import './weighttoplate.dart';
 import './platetoweight.dart';
 import './pctofmax.dart';
 import './pctofmaxnum.dart';
+import './volume.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,9 +18,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Brain Gains',
       theme: ThemeData(
-          primaryColor: Colors.blue,
+          primaryColor: Colors.cyan,
+          primaryTextTheme: TextTheme(
+            headline6: TextStyle(color: Colors.white)),
           iconTheme: IconThemeData(
-            color: Colors.blue,
+            color: Colors.cyan,
           ),
         ),
         routes: {
@@ -29,6 +33,7 @@ class MyApp extends StatelessWidget {
           '/platetoweight': (context) => PlateToWeight(title: '', ),
           '/pctofmax': (context) => PctOfMax(title: '', ),
           '/pctofmaxnum': (context) => PctOfMaxNum(title: '', ),
+          '/volume': (context) => Volume(title: '', ),
         },
     );
   }
@@ -92,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TheRouteButton('Plate to Weight', '/platetoweight'),
               // TheRouteButton('% of Max', '/pctofmax'),
               TheRouteButton('% of Max Num', '/pctofmaxnum'),
+              TheRouteButton('Volume', '/volume'),
           ],
         ),
       ),

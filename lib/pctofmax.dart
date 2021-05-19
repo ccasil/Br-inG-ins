@@ -55,7 +55,7 @@ class _PctOfMaxState extends State < PctOfMax > {
     return Scaffold(
       appBar: AppBar(
         title: Text('Percent of Max Calculator'),
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -130,7 +130,7 @@ class _PctOfMaxState extends State < PctOfMax > {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
+                    color: Colors.cyan[50],
                     textColor: Colors.black,
                   );
                 } // Delete Button
@@ -150,7 +150,7 @@ class _PctOfMaxState extends State < PctOfMax > {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
+                    color: Colors.cyan[50],
                     textColor: Colors.black,
                   );
                 } else {
@@ -163,7 +163,7 @@ class _PctOfMaxState extends State < PctOfMax > {
                       });
                     },
                     buttonText: buttons[index],
-                    color: Colors.blue[50],
+                    color: Colors.cyan[50],
                     textColor: Colors.black,
                   );
                 }

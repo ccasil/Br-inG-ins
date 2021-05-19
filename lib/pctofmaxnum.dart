@@ -56,7 +56,7 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
     return Scaffold(
       appBar: AppBar(
         title: Text('Percent of Max Calculator'),
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,18 +95,24 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                     Text(_currentSliderValue.toInt().toString() + '%', textAlign: TextAlign.right),
                   ],
                 ),
-                Slider(
-                  value: _currentSliderValue,
-                  min: 0,
-                  max: 100,
-                  divisions: 20,
-                  label: _currentSliderValue.round().toString(),
-                  onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValue = value.floorToDouble();
-                      lbkgconvert(myController.text);
-                    });
-                  },
+                SliderTheme(data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Colors.cyan,
+                    inactiveTrackColor: Colors.cyan[100],
+                    thumbColor: Colors.cyan[600],
+                    ),
+                  child: Slider(
+                    value: _currentSliderValue,
+                    min: 0,
+                    max: 100,
+                    divisions: 20,
+                    label: _currentSliderValue.round().toString(),
+                    onChanged: (double value) {
+                      setState(() {
+                        _currentSliderValue = value.floorToDouble();
+                        lbkgconvert(myController.text);
+                      });
+                    },
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16),
@@ -153,7 +159,7 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                         //     children: [
                         //       Icon(
                         //         Icons.calculate,
-                        //         color: Colors.blue,
+                        //         color: Colors.cyan,
                         //       ),
                         //       SizedBox(
                         //         width: MediaQuery.of(context).size.width * 0.01,
@@ -161,7 +167,7 @@ class _PctOfMaxNumState extends State < PctOfMaxNum > {
                         //       Text('Calculate',
                         //         textAlign: TextAlign.center,
                         //         style: TextStyle(fontSize: 20).copyWith(
-                        //           color: Colors.blue,
+                        //           color: Colors.cyan,
                         //           fontWeight: FontWeight.bold)),
                         //     ],
                         //   ),

@@ -120,7 +120,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
     return Scaffold(
       appBar: AppBar(
         title: Text('Weight to Plate Calculator'),
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
       ),
       body: Container(
         // child: ,
@@ -169,7 +169,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                     children: [
                       Icon(
                         Icons.calculate,
-                        color: Colors.blue,
+                        color: Colors.cyan,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.01,
@@ -177,7 +177,7 @@ class _WeightToPlateState extends State < WeightToPlate > {
                       Text('Calculate',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20).copyWith(
-                          color: Colors.blue,
+                          color: Colors.cyan,
                           fontWeight: FontWeight.bold)),
                     ],
                   ),

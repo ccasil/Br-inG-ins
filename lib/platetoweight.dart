@@ -13,7 +13,6 @@ class PlateToWeight extends StatefulWidget {
 class _PlateToWeightState extends State < PlateToWeight > {
 
   final _formKey = GlobalKey < FormState > ();
-  final myController = TextEditingController();
   TextEditingController fiftyfiveController = TextEditingController();
   TextEditingController fortyfiveController = TextEditingController();
   TextEditingController thirtyfiveController = TextEditingController();
@@ -28,7 +27,14 @@ class _PlateToWeightState extends State < PlateToWeight > {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
+  fiftyfiveController.dispose();
+  fortyfiveController.dispose();
+  thirtyfiveController.dispose();
+  twentyfiveController.dispose();
+  fifteenController.dispose();
+  tenController.dispose();
+  fiveController.dispose();
+  twofiveController.dispose();
     super.dispose();
   }
 
@@ -72,7 +78,7 @@ class _PlateToWeightState extends State < PlateToWeight > {
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Plate to Weight Calculator'),
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
       ),
       body: Center(
         // child: ,
@@ -82,9 +88,8 @@ class _PlateToWeightState extends State < PlateToWeight > {
             mainAxisAlignment: MainAxisAlignment.center,
             children: < Widget > [
               Text('Enter the number of plates on one side of the barbell'),
-              Expanded(child:
-
-                Form(
+              Expanded(
+                child: Form(
                   key: _formKey,
                   child: ListView(
                     children: < Widget > [
@@ -246,7 +251,7 @@ class _PlateToWeightState extends State < PlateToWeight > {
                       children: [
                         Icon(
                           Icons.calculate,
-                          color: Colors.blue,
+                          color: Colors.cyan,
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.01,
@@ -254,7 +259,7 @@ class _PlateToWeightState extends State < PlateToWeight > {
                         Text('Calculate',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20).copyWith(
-                            color: Colors.blue,
+                            color: Colors.cyan,
                             fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -274,7 +279,7 @@ class _PlateToWeightState extends State < PlateToWeight > {
                       children: [
                         Icon(
                           Icons.clear,
-                          color: Colors.blue,
+                          color: Colors.cyan,
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.01,
@@ -282,15 +287,15 @@ class _PlateToWeightState extends State < PlateToWeight > {
                         Text('Reset',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20).copyWith(
-                            color: Colors.blue,
+                            color: Colors.cyan,
                             fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
                 ]
               ),
-              Text('lb TOTAL: ' + total.toString()),
-              Text('kg TOTAL: ' + kgtotal.toStringAsFixed(2)),
+              Text(total != 0 ? total.toString() + ' lbs' : ''),
+              Text(total != 0 ? kgtotal.toStringAsFixed(2) + ' kgs' : ''),
             ],
           ),
         ),

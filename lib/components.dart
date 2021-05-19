@@ -13,7 +13,7 @@ class TheRouteButton extends StatelessWidget {
       child: Material(
         elevation: 5,
         borderRadius: BorderRadius.circular(50),
-        color: Colors.blue,
+        color: Colors.cyan,
         child: MaterialButton(
           minWidth: 250,
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
