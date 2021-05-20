@@ -70,77 +70,79 @@ class _VolumeState extends State < Volume > {
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: < Widget > [
-                Row(children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        // border: OutlineInputBorder(),
-                        hintText: 'Weight',
-                        // helperText: 'lbs',
-                        counterText: 'lbs'
+                Text(total != 0 ? total.toString() + ' lbs' : '', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          // border: OutlineInputBorder(),
+                          hintText: 'Weight',
+                          // helperText: 'lbs',
+                          counterText: 'lbs'
+                        ),
+                        keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
+                        controller: weightController,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          final number = num.tryParse(value);
+                          if (number == null) {
+                            return 'Please enter a number';
+                          }
+                          return null;
+                        },
                       ),
-                      keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
-                      controller: weightController,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '';
-                        }
-                        final number = num.tryParse(value);
-                        if (number == null) {
-                          return 'Please enter a number';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        // border: OutlineInputBorder(),
-                        hintText: 'Reps',
-                        // helperText: 'lbs',
-                        counterText: 'reps'
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          // border: OutlineInputBorder(),
+                          hintText: 'Reps',
+                          // helperText: 'lbs',
+                          counterText: 'reps'
+                        ),
+                        keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
+                        controller: repController,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          final number = num.tryParse(value);
+                          if (number == null) {
+                            return 'Please enter a number';
+                          }
+                          return null;
+                        },
                       ),
-                      keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
-                      controller: repController,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '';
-                        }
-                        final number = num.tryParse(value);
-                        if (number == null) {
-                          return 'Please enter a number';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        // border: OutlineInputBorder(),
-                        hintText: 'Sets',
-                        // helperText: 'lbs',
-                        counterText: 'sets'
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          // border: OutlineInputBorder(),
+                          hintText: 'Sets',
+                          // helperText: 'lbs',
+                          counterText: 'sets'
+                        ),
+                        keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
+                        controller: setController,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          final number = num.tryParse(value);
+                          if (number == null) {
+                            return 'Please enter a number';
+                          }
+                          return null;
+                        },
                       ),
-                      keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
-                      controller: setController,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return '';
-                        }
-                        final number = num.tryParse(value);
-                        if (number == null) {
-                          return 'Please enter a number';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-                ], ),
+                  ], ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -202,7 +204,6 @@ class _VolumeState extends State < Volume > {
                     ),
                   ],
                 ),
-                Text(total != 0 ? total.toString() + ' lbs' : ''),
               ],
             ),
           ),

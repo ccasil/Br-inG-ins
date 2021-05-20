@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Brain Gains',
+      title: 'notimeforrest',
       theme: ThemeData(
           primaryColor: Colors.cyan,
           primaryTextTheme: TextTheme(
@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
           // When navigating to the "/" route, build the FirstScreen widget.
           '/': (context) => MyHomePage(title: '', ),
           // When navigating to the "/second" route, build the SecondScreen widget.
-          '/weighttoplate': (context) => WeightToPlate(title: '', ),
-          '/platetoweight': (context) => PlateToWeight(title: '', ),
-          '/pctofmax': (context) => PctOfMax(title: '', ),
-          '/pctofmaxnum': (context) => PctOfMaxNum(title: '', ),
-          '/volume': (context) => Volume(title: '', ),
+          '/weighttoplate': (context) => WeightToPlate(title: 'Weight to Plate', ),
+          '/platetoweight': (context) => PlateToWeight(title: 'Plate to Weight', ),
+          // '/pctofmax': (context) => PctOfMax(title: '', ),
+          '/pctofmaxnum': (context) => PctOfMaxNum(title: 'Percent of Max', ),
+          '/volume': (context) => Volume(title: 'Volume', ),
         },
     );
   }

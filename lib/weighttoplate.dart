@@ -131,58 +131,8 @@ class _WeightToPlateState extends State < WeightToPlate > {
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: < Widget > [
-                TextFormField(
-                  decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    hintText: 'Enter a weight',
-                    // helperText: 'lbs',
-                    counterText: 'lbs'
-                  ),
-                  keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
-                  controller: myController,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a weight';
-                    }
-                    final number = num.tryParse(value);
-                    if (number == null) {
-                      return 'Please enter a number';
-                    } else if (number < 45) {
-                      return 'Please enter a number greater than 45';
-                    }
-                    _calculate();
-                    return null;
-                  },
-                ),
-                MaterialButton(
-                  minWidth: 250,
-                  padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data'), duration: Duration(milliseconds: 600), ));
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.calculate,
-                        color: Colors.cyan,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.01,
-                      ),
-                      Text('Calculate',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20).copyWith(
-                          color: Colors.cyan,
-                          fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(0, 8.0, 0, 8.0), child:
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 8.0, 0, 8.0), child:
                   Column(
                     children: [
                       Row(
@@ -236,8 +186,59 @@ class _WeightToPlateState extends State < WeightToPlate > {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text((myController.text.isEmpty) ? '' : '= ' + myController.text + ' lbs', textAlign: TextAlign.end, style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text((myController.text.isEmpty) ? '' : '= ' + myController.text + ' lbs', textAlign: TextAlign.end, style: TextStyle(fontWeight: FontWeight.bold), ),
                   ]),
+                TextFormField(
+                  decoration: InputDecoration(
+                    // border: OutlineInputBorder(),
+                    hintText: 'Enter a weight',
+                    // helperText: 'lbs',
+                    counterText: 'lbs'
+                  ),
+                  keyboardType: TextInputType.numberWithOptions(signed: false, decimal: false),
+                  controller: myController,
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a weight';
+                    }
+                    final number = num.tryParse(value);
+                    if (number == null) {
+                      return 'Please enter a number';
+                    } else if (number < 45) {
+                      return 'Please enter a number greater than 45';
+                    }
+                    _calculate();
+                    return null;
+                  },
+                ),
+                MaterialButton(
+                  minWidth: 250,
+                  padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Processing Data'), duration: Duration(milliseconds: 600), ));
+                    }
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.calculate,
+                        color: Colors.cyan,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.01,
+                      ),
+                      Text('Calculate',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20).copyWith(
+                          color: Colors.cyan,
+                          fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

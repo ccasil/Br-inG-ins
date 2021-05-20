@@ -88,6 +88,8 @@ class _PlateToWeightState extends State < PlateToWeight > {
             mainAxisAlignment: MainAxisAlignment.center,
             children: < Widget > [
               Text('Enter the number of plates on one side of the barbell'),
+              Text(total != 0 ? total.toString() + ' lbs' : '', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              Text(total != 0 ? kgtotal.toStringAsFixed(2) + ' kgs' : '', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               Expanded(
                 child: Form(
                   key: _formKey,
@@ -294,8 +296,6 @@ class _PlateToWeightState extends State < PlateToWeight > {
                   ),
                 ]
               ),
-              Text(total != 0 ? total.toString() + ' lbs' : ''),
-              Text(total != 0 ? kgtotal.toStringAsFixed(2) + ' kgs' : ''),
             ],
           ),
         ),
